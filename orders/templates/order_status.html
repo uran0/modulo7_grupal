@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Estado de mis Pedidos{% endblock %}
+
+{% block content %}
+<h1>Estado de mis Pedidos</h1>
+
+{% if orders %}
+    <ul>
+    {% for order in orders %}
+        <li>
+            <strong>Número de Orden:</strong> {{ order.id }}<br>
+            <strong>Fecha de Orden:</strong> {{ order.order_date }}<br>
+            <strong>Estado:</strong> {{ order.status }}<br>
+            <strong>Total:</strong> {{ order.total_amount }}<br>
+        </li>
+        <hr>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No has realizado pedidos aún.</p>
+{% endif %}
+{% endblock %}

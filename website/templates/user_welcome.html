@@ -6,5 +6,7 @@
 <div class="container mt-4">
     <h1>Bienvenido/a, {{ user.username }}!</h1>
     <p>Esta es la página de bienvenida para usuarios comunes y corrientes, como tú.</p>
+    <hr class="my-4">
+    <p><a href="{% url 'order_status' %}" class="btn btn-primary">Revisar estado de mis pedidos</a></p>
 </div>
 {% endblock %}

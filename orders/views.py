@@ -40,3 +40,10 @@ def place_order(request):
         order_form = OrderForm()
     
     return render(request, 'orders/place_order.html', {'delivery_form': delivery_form, 'order_form': order_form})
+
+
+@login_required
+def order_status(request):
+    user = request.user
+    orders = Order.objects.filter(customer__user=user)
+    return render(request, 'order/order_status.html', {'orders': orders})
