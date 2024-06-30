@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Historial de Pedidos{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Historial de Pedidos</h1>
+    <ul>
+        {% for order in orders %}
+        <li>
+            <strong>Orden {{ order.id }}:</strong> {{ order.customer.user.username }} - Estado actual: {{ order.get_status_display }}
+            <form method="POST" action="{% url 'update-order-status' order.id %}">
+                {% csrf_token %}
+                <select name="status">
+                    {% for value, display in order.order_status %}
+                        <option value="{{ value }}" {% if order.status == value %}selected{% endif %}>{{ display }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Actualizar Estado</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

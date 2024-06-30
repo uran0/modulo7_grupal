@@ -19,11 +19,16 @@
                         <a class="nav-link active" aria-current="page" href="#">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
+                        <a class="nav-link" href="#">seccion 1</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
+                        <a class="nav-link" href="#">seccion 2</a>
                     </li>
+                    {% if user.is_authenticated and user.user_type in ['staff', 'admin'] %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'order-history' %}">Historial de Pedidos</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

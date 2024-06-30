@@ -15,7 +15,12 @@ class CustomerInfo(models.Model):
 class Order(models.Model):
     customer = models.ForeignKey(CustomerInfo, on_delete=models.CASCADE)
     order_date = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=50)
+    order_status = (
+        ('pending', 'Pending'),
+        ('shipped', 'Shippoed'),
+        ('delivered', 'Delivered'),
+    )
+    status = models.CharField(max_length=50, choices=order_status)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
